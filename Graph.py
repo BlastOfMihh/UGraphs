@@ -161,6 +161,16 @@ class Graph:
         return deepcopy(self)
 
 
+class UnidirectedGraph(Graph):
+    def add_edge(self, weight, vertex_out, vertex_in):
+        super().add_edge(weight, vertex_out, vertex_in)
+        super().add_edge(weight, vertex_in, vertex_out)
+
+    def remove_edge(self, vertex_out, vertex_in):
+        super().remove_edge(vertex_in, vertex_out)
+        super().remove_edge(vertex_out, vertex_in)
+
+
 def get_random(vertecies_no, edges_no, max_weight=100)->Graph:
     vertecies=[x for x in range(0,vertecies_no)]
     graph=Graph(vertecies, [])
