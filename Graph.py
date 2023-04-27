@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from copy import deepcopy
+import random
 
 # https://www.cs.ubbcluj.ro/~rlupsa/edu/grafe/lab1.html
 # Problem number 1 for next lab
@@ -155,3 +156,19 @@ class Graph:
 
     def has_edge(self, vertex1, vertex2):
         return self.get_edge(vertex1, vertex2) is not None
+
+    def get_copy(self):
+        return deepcopy(self)
+
+
+def get_random(vertecies_no, edges_no, max_weight=100)->Graph:
+    vertecies=[x for x in range(0,vertecies_no)]
+    graph=Graph(vertecies, [])
+    MAX_EDGES_NO=vertecies_no*(vertecies_no-1)
+    for i in range(min(edges_no, MAX_EDGES_NO)):
+        out_vertex=random.randint(0,vertecies_no)
+        in_vertex=random.randint(0,vertecies_no)
+        while not graph.has_edge(out_vertex, in_vertex):
+            weight=random.randint(0, max_weight)
+            graph.add_edge(weight, out_vertex, in_vertex)
+    return graph
