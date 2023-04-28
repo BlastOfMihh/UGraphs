@@ -141,7 +141,15 @@ class UI:
     # print("\t0. EXIT")
 
 def start():
-    ui=UI( Graph([x for x in range(0,9)], [Edge(1, 1,2), Edge(69, 1,5), Edge(80 ,2,8)] ))
+    ui=UI(Graph(
+        [0,1,2,3,4,5,6,7],
+        [Edge(100, 1, 2),
+         Edge(200, 2, 3),
+         Edge(300, 1, 4),
+         Edge(100, 4, 5),
+         Edge(50, 6, 7)]
+    ))
+
     menu=Menu()
     menu.add_entry(ui, "Exit", UI.vertecies_count)
     menu.add_entry(ui, "Show graph", UI.print_graph)
@@ -156,6 +164,7 @@ def start():
     menu.add_entry(ui, "Add vertex", UI.add_vertex)
     menu.add_entry(ui, "Remove vertex", UI.remove_vertex)
     menu.add_entry(ui, "Add edge", UI.add_edge)
+    menu.add_entry(ui, "Remove edge", UI.remove_edge)
     menu.add_entry(ui, "Replace current graph with a random graph", UI.get_random_graph)
     menu.add_entry(ui, "Read graph from file", UI.get_file_graph)
     menu.add_entry(ui, "Write the current graph to a file", UI.write_to_file_graph)

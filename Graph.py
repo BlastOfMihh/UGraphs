@@ -183,3 +183,27 @@ def get_random(vertecies_no, edges_no, max_weight=100)->Graph:
             weight=random.randint(0, max_weight)
             graph.add_edge(weight, out_vertex, in_vertex)
     return graph
+
+
+def dfs_color(graph:Graph, curr, colors, color):
+    if colors[curr]==0:
+        colors[curr]=color
+        out_edges=graph.out_edges(curr)
+        for edge in out_edges:
+            dfs_color(graph, edge.vertex_in, colors, color)
+
+def get_connected_components(graph):
+    vertecies=graph.vertecies
+    colors=[0]*(len(graph.vertecies)+1)
+    color=0
+    for vertex in vertecies:
+        if colors[vertex]==0:
+            color+=1
+            dfs_color(graph, vertex, colors, color)
+    connected_components={}
+    for vertex in vertecies:
+        if not colors[vertex] in connected_components:
+            connected_components[colors[vertex]]=[vertex]
+        else :
+            connected_components[colors[vertex]].append(vertex)
+    return connected_components

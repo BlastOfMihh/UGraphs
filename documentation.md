@@ -1,52 +1,91 @@
 
-#Lab 1 : Documentation
- 
+## Graph module: Documentation
 
-## Specification
-We shall define a class named *Graph* representing a directed 
+We have the following implemented:
 
-In addition, there are defined the following classes :
+* The class **Edge** with the following members implemented:  
+    * weight ()  
+    Which return the the that the edge has
+    * vertex_out
+    Which returns the out-going vertex of the edge
+    * vertex_in
+    Which returns the in-going vertex of the edge
+  
 
-Graph::Edge
-Which is used for representing the information about the edges inside the graph.
+* The class **Graph** has the following memebers implemented:
 
-The class Graph which has the following methods:
+    * __init__(self, vertecies:list, edges:list)  
+    Builds the and object based of the provided list of vertecies and the list of edges
 
-def __init__(self, vertecies:list, edges:list) -> None:
-* Initializes the graph function 
+    * vertecies(self)  
+    Returns a copy of the list of vertecies
 
-@property
-def vertecies(self):
+    * vertecies_count(self)  
+    Returns the number of vertecies
 
-@property
-def vertecies_count(self):
+    * edges(self)  
+    Returns a copy of the list of edges
 
-@property
-def edges(self):
+    * add_edge(self, weight, vertex_out, vertex_in)
+    Adds an edge with the with: 
+        * the weight, "weight" 
+        * the outbound vertex, vertex_out
+        * the inbound vertex, vertex_in
 
-def add_edge(self, weight, vertex_out, vertex_in):
+    * degree_in(self, vertex)  
+    Returns the in-degree for a vertex
+    
 
-def degree_in(self, vertex):
+    * degree_out(self, vertex)
+    Returns the out-degree for a vertex
 
-def degree_out(self, vertex):
+    * __str__(self) -> str  
+    Returns the string format of the graph
 
-def __str__(self) -> str:
+    * remove_edge(self, vertex_out, vertex_in):  
+    Removes the edge going from "vertex_out" to "vertex_in"
 
-def remove_edge(self, vertex_out, vertex_in):
+    * remove_vertex(self, vertex)
+    Removes the vertex from the graph
 
-def remove_vertex(self, vertex):
+    * out_edges(self, vertex)  
+    Returns the list of out-bound edges for the vertex, "vertex"
 
-def out_edges(self, vertex):
+    * in_edges(self, vertex)  
+    Returns the list of in-bound edges for the vertex, "vertex"
 
-def in_edges(self, vertex):
 
-def add_vertex(self, vertex):
+    * add_vertex(self, vertex)  
+    Returns the list of in-bound edges for the vertex, "vertex"
 
-def get_edge(self, vertex_out, vertex_in):
 
-def has_edge(self, vertex1, vertex2):
+    * get_edge(self, vertex_out, vertex_in)  
+    Returns the edge information contained in an object of type _Edge_
 
-def get_copy(self):
+    * has_edge(self, vertex1, vertex2)  
+    Returns true if there is an edge going from vertex1 to vertex2 
 
-def get_random(vertecies_no, edges_no, max_weight=100)->Graph:
+    * get_copy(self)  
+    Returns an indepent copy for the graph
 
+
+* The class **UnidirectedGraph** which inherits from **Graph** however it has the following funtions overwritten:
+
+    * add_edge(self, weight, vertex_out, vertex_in)  
+    Adds an unidirected edge to the graph
+    
+    * remove_edge(self, vertex_out, vertex_in)  
+    Removes the edge going from vertex_out to vertex_in
+    
+    
+    
+* There are also some functions inmplemented in the Graph module which are supposed to do Graph specific logic:  
+
+    * get_random(vertecies_no, edges_no, max_weight=100)  
+    Returns a randomly generated graph having the number of vertecies and number of edges specified. The mac weight is implicitly set to 100
+    
+    * dfs_color(graph, curr, colors, color)  
+    Will modify the array stored in the colors parameter. The array will be modified such that the direct accesible vertecies from the vertex curr have the value "color" assigned to them
+
+    * get_connected_components(undirected_graph)  
+    will return the connected components from the undirected graph by using the *dfs_color* function to determine each connected component
