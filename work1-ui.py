@@ -41,31 +41,31 @@ class UI:
 
     # print("\t6. Show outbound and inbound edges of a vertex")
     def in_out_edges(self):
-        vertex=input("Vertex:")
+        vertex=int(input("Vertex:"))
         edges_out=self.graph.out_edges(vertex)
-        edges_in=self.graph.out_edges(vertex)
-        print("In-going edges")
+        edges_in=self.graph.in_edges(vertex)
+        print("In-going edges:")
         for edge in edges_in:
             print(edge)
-        print("Out-going edges")
+        print("Out-going edges:")
         for edge in edges_out:
-            print(edge)
+            print("t "+str(edge))
 
     # print("\t7. Get cost of an edge")
     def get_edge_cost(self):
         out_vertex=input("Enter the out vertex:")
         in_vertex=input("Enter the in vertex:")
-        edge=self.graph.get_edge(out_vertex, in_vertex)
+        edge=self.graph.get_edge(int(out_vertex), int(in_vertex))
         if edge is not None:
-            print(edge.cost)
+            print(edge.weight)
         else:
             print("The edge does not exist")
 
 
     # print("\t8. Modify cost of an edge")
     def modify_edge_cost(self):
-        in_vertex=int(input("Enter the in-bound:"))
         out_vertex=int(input("Enter the out-bound:"))
+        in_vertex=int(input("Enter the in-bound:"))
         new_cost=int(input("Enter new edge cost:"))
         self.graph.remove_edge(out_vertex, in_vertex)
         self.graph.add_edge(new_cost, out_vertex, in_vertex)

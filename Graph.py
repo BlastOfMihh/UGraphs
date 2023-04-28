@@ -32,7 +32,7 @@ class Edge:
         return (self._weight <= leftEdge.weight)
 
     def __str__(self) -> str:
-        return "Cost"+str(self.weight)+" "+str(self.vertex_in)+" "+str(self.vertex_out)
+        return "Cost:"+str(self.weight)+",Out:"+str(self.vertex_in)+",In:"+str(self.vertex_out)
 
     def reverse(self):
         self._vertex_out, self._vertex_in = self._vertex_in, self._vertex_out
@@ -130,8 +130,9 @@ class Graph:
 
     def _edges_from_adjacency_list(self, adjacency_list, vertex):
         edges=[]
-        for weight, vertex_in in adjacency_list[vertex]:
-            edges.append(Edge(weight, vertex, vertex_in))
+        if vertex in adjacency_list:
+            for weight, vertex_in in adjacency_list[vertex]:
+                edges.append(Edge(weight, vertex, vertex_in))
         return edges
 
     def out_edges(self, vertex):
